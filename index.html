@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gaun Suraksha</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <button id="langBtn" class="lang-btn">नेपाली</button>
+    <h1 data-i18n="title">Gaun Suraksha</h1>
+    <p data-i18n="subtitle">Protecting farmers before, during and after disasters</p>
+  </header>
+
+  <div id="areaBanner" class="area-banner"></div>
+
+  <nav class="topnav">
+    <a href="#alerts" data-i18n="navAlerts">Alerts</a>
+    <a href="#dashboard" data-i18n="navDashboard">Dashboard</a>
+    <a href="#map-section" data-i18n="navMap">Map</a>
+    <a href="#reports" data-i18n="navReports">Reports</a>
+    <a href="#relief-section" data-i18n="navRelief">Relief</a>
+    <a href="#safety" data-i18n="navSafety">Safety</a>
+  </nav>
+
+  <main>
+
+    <section class="card" id="alerts">
+      <h2 data-i18n="alertsHeading">Weather Alerts</h2>
+
+      <label for="alertType" data-i18n="disasterType">Disaster type:</label>
+      <select id="alertType">
+        <option value="flood" data-i18n="flood">Flood</option>
+        <option value="hailstorm" data-i18n="hailstorm">Hailstorm</option>
+        <option value="drought" data-i18n="drought">Drought</option>
+      </select>
+
+      <label data-i18n="affectedWards">Affected wards (choose one or more):</label>
+      <div id="wardPick" class="ward-pick"></div>
+
+      <button id="simulateBtn" data-i18n="sendAlert">Send Simulated Alert</button>
+      <button id="forecastBtn" data-i18n="checkForecast">Check Real Rain Forecast</button>
+
+      <div id="forecastBox"></div>
+      <div id="alertBox" aria-live="polite"></div>
+    </section>
+
+    <section class="card" id="dashboard">
+      <h2 data-i18n="dashHeading">Area Dashboard</h2>
+      <div id="stats" class="stats"></div>
+      <div class="chart-box" id="chartBox"><canvas id="chart"></canvas></div>
+      <p id="chartEmpty" class="hint" data-i18n="noChartData"></p>
+    </section>
+
+    <section class="card" id="map-section">
+      <h2 data-i18n="mapHeading">Nepal Alert Map</h2>
+      <p class="hint" data-i18n="mapHint"></p>
+      <p id="geoStatus" class="hint"></p>
+      <div id="map"></div>
+    </section>
+
+    <section class="card" id="reports">
+      <h2 data-i18n="reportHeading">Report Crop Damage</h2>
+      <input type="text" id="crop" data-i18n-placeholder="cropPlaceholder" placeholder="Crop">
+      <input type="number" id="area" step="0.1" min="0" data-i18n-placeholder="areaPlaceholder" placeholder="Area">
+      <textarea id="details" data-i18n-placeholder="detailsPlaceholder" placeholder="Details"></textarea>
+      <button id="reportBtn" data-i18n="submitReport">Submit Report</button>
+
+      <h3 data-i18n="listHeading">Submitted Reports</h3>
+      <div id="reportList"></div>
+    </section>
+
+    <section class="card" id="relief-section">
+      <h2 data-i18n="reliefHeading">Relief Requests</h2>
+      <label for="reliefItem" data-i18n="reliefItem">Item needed:</label>
+      <select id="reliefItem">
+        <option value="food" data-i18n="food">Food</option>
+        <option value="tent" data-i18n="tent">Tent / shelter</option>
+        <option value="medicine" data-i18n="medicine">Medicine</option>
+        <option value="seeds" data-i18n="seeds">Seeds</option>
+      </select>
+      <input type="number" id="reliefQty" min="1" data-i18n-placeholder="qtyPlaceholder" placeholder="Quantity">
+      <input type="text" id="reliefNote" data-i18n-placeholder="notePlaceholder" placeholder="Note">
+      <button id="reliefBtn" data-i18n="submitRelief">Send Request</button>
+
+      <h3 data-i18n="reliefList">Request list</h3>
+      <div id="reliefListBox"></div>
+    </section>
+
+    <section class="card" id="safety">
+      <h2 data-i18n="checklistHeading">Household Preparedness Checklist</h2>
+      <p class="hint" data-i18n="checklistIntro"></p>
+      <div id="checklistBox"></div>
+    </section>
+
+    <section class="card">
+      <h2 data-i18n="contactsHeading">Emergency Contacts</h2>
+      <div id="contactsBox" class="contacts"></div>
+      <p class="hint" data-i18n="contactNote"></p>
+    </section>
+
+    <section class="card">
+      <h2 data-i18n="toolsHeading">Project Tools</h2>
+      <p class="hint" data-i18n="toolsNote"></p>
+      <button id="demoBtn" class="btn-secondary" data-i18n="loadDemo">Load demo data</button>
+      <button id="exportBtn" class="btn-secondary" data-i18n="exportCsv">Download reports (CSV)</button>
+      <button id="clearBtn" class="btn-danger" data-i18n="clearAll">Clear all data</button>
+    </section>
+
+  </main>
+
+  <footer class="footer" data-i18n="footerText"></footer>
+
+  <div id="toasts" aria-live="polite"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/osmtogeojson@3.0.0-beta.5/osmtogeojson.js"></script>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

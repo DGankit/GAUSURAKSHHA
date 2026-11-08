@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gaun Suraksha - Choose Area</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Gaun Suraksha</h1>
+    <p>Choose your local unit anywhere in Nepal</p>
+  </header>
+
+  <main>
+
+    <section class="card" id="currentCard" style="display:none;">
+      <h2>Current area</h2>
+      <div id="currentArea"></div>
+      <p><a class="link-btn" href="index.html">Continue with this area</a></p>
+    </section>
+
+    <section class="card">
+      <h2>1. Search by name</h2>
+      <p class="hint">Search all 775 local units in English or Nepali (for example "Bardaghat" or "बर्दघाट").</p>
+      <input type="text" id="searchBox" placeholder="Type a municipality or rural municipality" autocomplete="off">
+      <div id="searchResults"></div>
+    </section>
+
+    <section class="card">
+      <h2>2. Or use your location</h2>
+      <button id="detectBtn">Detect my location</button>
+      <p id="detectMsg" aria-live="polite"></p>
+      <div id="nearList"></div>
+      <label id="gpsRow" class="check-item" style="display:none;">
+        <input type="checkbox" id="useGps" checked>
+        Use my GPS position for the weather forecast and map
+      </label>
+    </section>
+
+    <section class="card">
+      <h2>3. Or choose from the lists</h2>
+      <label for="province">Province</label>
+      <select id="province"></select>
+
+      <label for="district">District</label>
+      <select id="district"></select>
+
+      <label for="unit">Local unit</label>
+      <select id="unit"></select>
+    </section>
+
+    <section class="card">
+      <h2>4. Ward and save</h2>
+      <div id="chosenUnit" class="hint">No local unit chosen yet.</div>
+      <label for="wardNo">Ward number</label>
+      <input type="number" id="wardNo" min="1" max="50" value="1">
+      <button id="confirmBtn">Save this area</button>
+      <p><a class="link-btn" href="index.html" id="goLink" style="display:none;">Open the app</a></p>
+      <p id="saveMsg" aria-live="polite"></p>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    Gaun Suraksha is a prototype. Your data stays on this device.<br>
+    Administrative data: OCHA COD-AB via HDX (CC BY-IGO).<br>
+    Ward boundaries and map: &copy; OpenStreetMap contributors (ODbL).
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="location.js"></script>
+</body>
+</html>
